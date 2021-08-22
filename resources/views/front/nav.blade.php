@@ -16,7 +16,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories        </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-     
+
           <?php $cats=DB::table('categories')->get(); ?>
           @foreach($cats as $cat)
           <a class="dropdown-item" href="{{url('category',$cat->id)}}">{{ucwords($cat->name)}}</a>
@@ -28,13 +28,18 @@
       <li class="nav-item">
         <a class="nav-link" href="{{url('/contact')}}">Contact Us</a>
       </li>
-   
+
       <?php if(Auth::check()){ ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">{{Auth::user()->name}}</a>
-                        <a class="dropdown-item" href="{{url('/logout')}}">Logout</a>
+                        <form action="{{ url('/logout') }}" method="POST">
+                            @csrf
+{{--                            @method('DELETE')--}}
+                            <button type="submit" class="btn btn-link">Logout</button>
+{{--                            <a class="dropdown-item" href="{{url('/logout')}}">Logout</a>--}}
+                        </form>
                         <a class="dropdown-item" href="{{url('/')}}/profile">Profile</a>
                     </div>
                 </li>
@@ -49,6 +54,6 @@
 
 
     </ul>
-  
+
   </div>
 </nav>

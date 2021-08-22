@@ -88,7 +88,8 @@
                 <div class="col-lg-8">
                     <div class="tab-content">
                         <div id="address" class="active tab-block">
-                            <form action="{{url('admin/formvalidate')}}" method="post">
+                            <form action="{{url('admin/formvalidate')}}" method="POST">
+                                @method('PUT')
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <h1>Shipping Address</h1>
                                 <div class="row">
@@ -117,7 +118,7 @@
                                         <span style="color:red">{{ $errors->first('city') }}</span>
                                     </div>
                                     <hr>
-                                 
+
                                     <span>
                     <input type="radio" name="payment_type" value="esewa" checked="checked" > E-Sewa
                 </span>

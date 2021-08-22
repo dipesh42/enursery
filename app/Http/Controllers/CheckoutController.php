@@ -24,17 +24,20 @@ class CheckoutController extends Controller
 
     public function address(Request $request){
         $this->validate($request,[
-
-            'fullname'=>'required|min:5|max:35',
-            'pincode'=>'required|numeric',
+            'fullname'=>'required',
+//            'pincode'=>'required|numeric',
             'city'=>'required|min:5|max:25',
             'state'=>'required|min:5|max:35',
-            'country'=>'required',
+//            'country'=>'required',
         ]);
 
         $request['user_id']=Auth::user()->id;
+        $request['country']='Nepal';
+
         Address_model::create($request->all());
-        Order_model::createOrder();
+
+//        $order = new Order_model;
+//        $order->createOrder();
         Cart::destroy();
         return view('profile.thanksyou');
     }
